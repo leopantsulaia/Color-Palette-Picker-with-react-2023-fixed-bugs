@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Navbar from './Navbar';
-import PaletteFooter from './PaletteFooter';
-import styles from './styles/PaletteStyles';
-import { withStyles } from '@material-ui/styles';
-import ColorBox from './ColorBox';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
+import PaletteFooter from "./PaletteFooter";
+import styles from "../styles/PaletteStyles";
+import { withStyles } from "@material-ui/styles";
+import ColorBox from "./ColorBox";
 
 function SingleColorPalette(props) {
-  const [format, setFormat] = useState('hex');
+  const [format, setFormat] = useState("hex");
   const { palette, colorId, classes } = props;
   const shades = gatherShades(palette, colorId);
 

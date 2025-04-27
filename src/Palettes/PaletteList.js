@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import MiniPalette from './MiniPalette';
-import Dialog from '@material-ui/core/Dialog';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
-import ListItemText from '@material-ui/core/ListItemText';
-import CheckIcon from '@material-ui/icons/Check';
-import CloseIcon from '@material-ui/icons/Close';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import { withStyles } from '@material-ui/styles';
-import styles from './styles/PaletteListStyles';
-import blue from '@material-ui/core/colors/blue';
-import red from '@material-ui/core/colors/red';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import MiniPalette from "../MiniPalette";
+import Dialog from "@material-ui/core/Dialog";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import Avatar from "@material-ui/core/Avatar";
+import ListItemText from "@material-ui/core/ListItemText";
+import CheckIcon from "@material-ui/icons/Check";
+import CloseIcon from "@material-ui/icons/Close";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import { withStyles } from "@material-ui/styles";
+import styles from "../styles/PaletteListStyles";
+import blue from "@material-ui/core/colors/blue";
+import red from "@material-ui/core/colors/red";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const PaletteList = ({ palettes, classes, deletePalette }) => {
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
-  const [deletingId, setDeletingId] = useState('');
+  const [deletingId, setDeletingId] = useState("");
   // const history = useHistory();
 
   const openDialog = (id) => {
@@ -28,14 +28,13 @@ const PaletteList = ({ palettes, classes, deletePalette }) => {
 
   const closeDialog = () => {
     setOpenDeleteDialog(false);
-    setDeletingId('');
+    setDeletingId("");
   };
 
   const goToPalette = (id) => {
     window.location.href = `/palette/${id}`;
   };
-  
-  
+
   const handleDelete = () => {
     deletePalette(deletingId);
     closeDialog();
@@ -46,11 +45,11 @@ const PaletteList = ({ palettes, classes, deletePalette }) => {
       <div className={classes.container}>
         <nav className={classes.nav}>
           <h1 className={classes.heading}>React Colors</h1>
-          <Link to='/palette/new'>Create Palette</Link>
+          <Link to="/palette/new">Create Palette</Link>
         </nav>
         <TransitionGroup className={classes.palettes}>
           {palettes.map((palette) => (
-            <CSSTransition key={palette.id} classNames='fade' timeout={500}>
+            <CSSTransition key={palette.id} classNames="fade" timeout={500}>
               <MiniPalette
                 {...palette}
                 goToPalette={goToPalette}
@@ -64,10 +63,9 @@ const PaletteList = ({ palettes, classes, deletePalette }) => {
       </div>
       <Dialog
         open={openDeleteDialog}
-        aria-labelledby='delete-dialog-title'
-        onClose={closeDialog}
-      >
-        <DialogTitle id='delete-dialog-title'>Delete This Palette?</DialogTitle>
+        aria-labelledby="delete-dialog-title"
+        onClose={closeDialog}>
+        <DialogTitle id="delete-dialog-title">Delete This Palette?</DialogTitle>
         <List>
           <ListItem button onClick={handleDelete}>
             <ListItemAvatar>
@@ -75,7 +73,7 @@ const PaletteList = ({ palettes, classes, deletePalette }) => {
                 <CheckIcon />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary='Delete' />
+            <ListItemText primary="Delete" />
           </ListItem>
           <ListItem button onClick={closeDialog}>
             <ListItemAvatar>
@@ -83,7 +81,7 @@ const PaletteList = ({ palettes, classes, deletePalette }) => {
                 <CloseIcon />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary='Cancel' />
+            <ListItemText primary="Cancel" />
           </ListItem>
         </List>
       </Dialog>
