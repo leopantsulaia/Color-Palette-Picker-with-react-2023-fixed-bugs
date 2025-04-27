@@ -46,16 +46,17 @@ const NewPaletteForm = ({ classes, maxColors, palettes, savePalette }) => {
     const allColors = palettes.map((p) => p.colors).flat();
     let randomColor;
     let isDuplicateColor = true;
-
-    // eslint-disable-next-line no-loop-func
     while (isDuplicateColor) {
       const rand = Math.floor(Math.random() * allColors.length);
       randomColor = allColors[rand];
-      isDuplicateColor = colors.some(
-        (color) => color.name === randomColor.name
-      );
+      isDuplicateColor = false;
+      for (let i = 0; i < colors.length; i++) {
+        if (colors[i].name === randomColor.name) {
+          isDuplicateColor = true;
+          break;
+        }
+      }
     }
-
     setColors([...colors, randomColor]);
   };
 
